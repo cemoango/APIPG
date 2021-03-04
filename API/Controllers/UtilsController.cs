@@ -32,21 +32,25 @@ namespace API.Controllers
                 {
                     string line;
                     string[] parts;
-
+                    int i = 0;
                     while ((line = readFile.ReadLine()) != null)
                     {
-                        parts = line.Split(',');
-
-                        metadata.Add(new Movie()
+                        if (i > 0)
                         {
-                            id = int.Parse(parts[0]),
-                            duration = parts[4],
-                            language = parts[3],
-                            movieId = int.Parse(parts[1]),
-                            releaseYear = int.Parse(parts[5]),
-                            title = parts[2]
-                        });
+                            parts = line.Split(',');
+                            metadata.Add(new Movie()
+                            {
+                                id = int.Parse(parts[0]),
+                                duration = parts[4],
+                                language = parts[3],
+                                movieId = int.Parse(parts[1]),
+                                releaseYear = int.Parse(parts[5]),
+                                title = parts[2]
+                            });
+                        }
+                        i++;
                     }
+
                 }
             }
             catch (Exception ex)
@@ -77,7 +81,7 @@ namespace API.Controllers
                                 movieId = int.Parse(parts[0])
                             });
                         }
-
+                        i++;
 
                     }
                 }
